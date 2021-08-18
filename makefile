@@ -4,14 +4,17 @@ TARGET = main
 LD_SCRIPT = STM32L031K6.ld
 MCU_SPEC  = cortex-m0
 
+SRCS:=$(shell find $(SRC_DIRS) -name "*.cpp" -or -name "*.c" -or -name "*.s")
+OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(OUT_DIR)/%.o)
+
 # Toolchain definitions (ARM bare metal defaults)
-TOOLCHAIN = /usr
-CC = $(TOOLCHAIN)/bin/arm-none-eabi-gcc
-AS = $(TOOLCHAIN)/bin/arm-none-eabi-as
-LD = $(TOOLCHAIN)/bin/arm-none-eabi-ld
-OC = $(TOOLCHAIN)/bin/arm-none-eabi-objcopy
-OD = $(TOOLCHAIN)/bin/arm-none-eabi-objdump
-OS = $(TOOLCHAIN)/bin/arm-none-eabi-size
+TOOLCHAIN = /usr/bin/arm-none-eabi-
+CC = $(TOOLCHAIN)gcc
+AS = $(TOOLCHAIN)as
+LD = $(TOOLCHAIN)ld
+OC = $(TOOLCHAIN)objcopy
+OD = $(TOOLCHAIN)objdump
+OS = $(TOOLCHAIN)size
 
 # Assembly directives.
 ASFLAGS += -c
@@ -27,7 +30,7 @@ CFLAGS += -mcpu=$(MCU_SPEC)
 CFLAGS += -mthumb
 CFLAGS += -Wall
 CFLAGS += -g3
-#CFLAGS += -g3
+CFLAGS += -Iinclude
 # (Set error messages to appear on a single line.)
 CFLAGS += -fmessage-length=0
 # (Set system to ignore semihosted junk)

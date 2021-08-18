@@ -1,2 +1,4 @@
 #ignoring .swp files
 *.swp
+#ignoring object files
+*.o
