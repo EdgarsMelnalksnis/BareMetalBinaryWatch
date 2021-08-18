@@ -1,8 +1,12 @@
 #ifndef _VVC_CONFIG_H
 #define _VVC_CONFIG_H
 #include <stdint.h>
-//#include "stm32l031xx.h"
-// Define GPIOB pin mappings for our LED and button.
+
+#define GPIO_7_MODER_POS_0 (14u)
+#define GPIO_7_MODER_POS_1 (15u)
+#define GPIO_8_MODER_POS_0 (16u)
+#define GPIO_8_MODER_POS_1 (17u)
+
 #ifdef __cplusplus
 #define   __I     volatile             /*!< Defines 'read only' permissions */
 #else
