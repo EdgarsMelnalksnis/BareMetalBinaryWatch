@@ -1,5 +1,5 @@
-    #ifndef _VVC_MAIN_H
-    #define _VVC_MAIN_H
+    #ifndef _VVC_CONFIG_H
+    #define _VVC_CONFIG_H
     #include <stdint.h>
     #include "stm32l031xx.h"
     // Define GPIOB pin mappings for our LED and button.
