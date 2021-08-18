@@ -1,4 +1,4 @@
-#include "main.h"
+#include "config.h"
 
 int main(void)
 {
