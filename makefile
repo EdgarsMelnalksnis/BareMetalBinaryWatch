@@ -26,7 +26,8 @@ ASFLAGS += -fmessage-length=0
 CFLAGS += -mcpu=$(MCU_SPEC)
 CFLAGS += -mthumb
 CFLAGS += -Wall
-CFLAGS += -g
+CFLAGS += -g3
+#CFLAGS += -g3
 # (Set error messages to appear on a single line.)
 CFLAGS += -fmessage-length=0
 # (Set system to ignore semihosted junk)
