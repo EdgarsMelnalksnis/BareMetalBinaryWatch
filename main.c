@@ -12,7 +12,7 @@ int main(void)
     GPIOA->MODER &= ~(1<<17u);
     GPIOA->MODER |= (1<<14u);
     GPIOA->MODER &= ~(1<<15u);
-   
+
 
     GPIOA->ODR |= (1 << LED_PIN_7);
     GPIOA->ODR &= ~(1 << LED_PIN_8);
