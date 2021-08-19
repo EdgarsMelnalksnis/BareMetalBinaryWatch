@@ -2,3 +2,5 @@
 *.swp
 #ignoring object files
 *.o
+#ignoring .bin files
+*.bin
