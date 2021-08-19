@@ -25,9 +25,9 @@
 #define GPIO_12_MODER_POS_1 (25u)
 
 
-static void led_test(void);
-
-static void time_to_binary(uint8_t hours,uint8_t minutes,uint8_t sec);
+inline static void blink_led(uint8_t gpio_anode,uint8_t gpio_cathode);
+inline static void led_test(void);
+inline static void time_to_binary(uint8_t hours,uint8_t minute,uint8_t sec);
 
 
 
