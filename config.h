@@ -1,8 +1,6 @@
-#ifndef _VVC_BINARYWATCH_H
-#define _VVC_BINARYWATCH_H
+#ifndef _VVC_CONFIG_H
+#define _VVC_CONFIG_H
 
-#include <stdint.h>
-#include "stm32l031xx.h"
 
 #define LED_CTRL_0    (7u)
 #define LED_CTRL_1    (8u)
@@ -23,13 +21,5 @@
 #define GPIO_11_MODER_POS_1 (23u)
 #define GPIO_12_MODER_POS_0 (24u)
 #define GPIO_12_MODER_POS_1 (25u)
-
-
-inline static void blink_led(uint8_t gpio_anode,uint8_t gpio_cathode);
-inline static void led_test(void);
-inline static void time_to_binary(uint8_t hours,uint8_t minute,uint8_t sec);
-
-
-
 
 #endif

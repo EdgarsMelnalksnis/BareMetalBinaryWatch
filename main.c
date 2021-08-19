@@ -1,5 +1,6 @@
-#include "binaryWatch.h"
-
+#include "stm32l031xx.h"
+#include "led.h"
+#include "config.h"
 
 int main(void)
 {
