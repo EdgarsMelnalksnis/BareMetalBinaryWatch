@@ -3,9 +3,9 @@
 
 #include <stdint.h>
 
-inline static void blink_led(uint8_t gpio_anode,uint8_t gpio_cathode);
-inline static void led_test(void);
-inline static void time_to_binary(uint8_t hours,uint8_t minute,uint8_t sec);
+inline void blink_led(uint8_t gpio_anode,uint8_t gpio_cathode);
+inline void led_test(void);
+inline void time_to_binary(uint8_t hours,uint8_t minute,uint8_t sec);
 
 
 
