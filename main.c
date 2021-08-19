@@ -9,15 +9,15 @@ int main(void)
 
     RCC->CSR |= 1<<RCC_CSR_RTCEN_Pos;
 
-    GPIOA->MODER |= ((1<<(7*2))|(1<<(8*2+1)));//sets 14 and 16 bit to 1
-    GPIOA->MODER &= ~((1<<(7*2+1))|(1<<(8*2+1)));//sets 15 adn 17 bit to 0
-    GPIOA->ODR |= (1 << 7);
-    GPIOA->ODR &= ~(1 << 8);
+    GPIOA->MODER |= ((1<<GPIO_7_MODER_POS_0)|(1<<GPIO_8_MODER_POS_0);
+                     GPIOA->MODER &= ~((1<<GPIO_7_MODER_POS_1)|(1<<GPIO_8_MODER_POS_1));
+                     GPIOA->ODR |= (1 << LED_CTRL_0 );
+                     GPIOA->ODR &= ~(1 << LED_CTRL_1 );
 
-    while(1)
-    {
-        time=RTC->TR;
-        if(time % 2 == 0)
+                     while(1)
+{
+    time=RTC->TR;
+    if(time % 2 == 0)
         {
             GPIOA->ODR ^= (1 << 8);
         }

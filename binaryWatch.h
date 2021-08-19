@@ -4,12 +4,12 @@
 #include <stdint.h>
 #include "stm32l031xx.h"
 
-#define LED_PIN_7    (7u)
-#define LED_PIN_8    (8u)
-#define LED_PIN_9    (9u)
-#define LED_PIN_10   (10u)
-#define LED_PIN_11   (11u)
-#define LED_PIN_12   (12u)
+#define LED_CTRL_0    (7u)
+#define LED_CTRL_1    (8u)
+#define LED_CTRL_2   (9u)
+#define LED_CTRL_3   (10u)
+#define LED_CTRL_4   (11u)
+#define LED_CTRL_5   (12u)
 
 #define GPIO_7_MODER_POS_0 (14u)
 #define GPIO_7_MODER_POS_1 (15u)
