@@ -1,6 +1,7 @@
 #include "config.h"
 
 void blink_led(uint8_t gpio_anode,uint8_t gpio_cathode);
+void led_test(void);
 
 int main(void)
 {
@@ -12,6 +13,25 @@ int main(void)
 
     while(1)
     {
+    led_test();
+
+    }
+
+}
+
+void blink_led(uint8_t gpio_anode,uint8_t gpio_cathode)
+{
+    GPIOA->MODER |= ((1<<(gpio_anode*2))|(1<<(gpio_cathode*2)));//sets 14 and 16 bit to 1
+    GPIOA->MODER &= ~((1<<(gpio_anode*2+1))|(1<<(gpio_cathode*2+1)));//sets 15 adn 17 bit to 0
+    GPIOA->ODR |= (1 << gpio_anode);
+    GPIOA->ODR &= ~(1 << gpio_cathode);
+    GPIOA->MODER |= ((1<<(gpio_anode*2))|(1<<(gpio_cathode*2)));//sets 14 and 16 bit to 1
+    GPIOA->MODER |=((1<<(gpio_anode*2+1))|(1<<(gpio_cathode*2+1)));
+
+}
+/*blinks all leds */
+void led_test(void)
+{
         blink_led(LED_PIN_7,LED_PIN_8);
         blink_led(LED_PIN_7,LED_PIN_9);
         blink_led(LED_PIN_7,LED_PIN_10);
@@ -33,19 +53,4 @@ int main(void)
         blink_led(LED_PIN_9,LED_PIN_8);
         blink_led(LED_PIN_12,LED_PIN_7);
         blink_led(LED_PIN_11,LED_PIN_7);
-
-    }
-
 }
-
-void blink_led(uint8_t gpio_anode,uint8_t gpio_cathode)
-{
-    GPIOA->MODER |= ((1<<(gpio_anode*2))|(1<<(gpio_cathode*2)));//sets 14 and 16 bit to 1
-    GPIOA->MODER &= ~((1<<(gpio_anode*2+1))|(1<<(gpio_cathode*2+1)));//sets 15 adn 17 bit to 0
-    GPIOA->ODR |= (1 << gpio_anode);
-    GPIOA->ODR &= ~(1 << gpio_cathode);
-    GPIOA->MODER |= ((1<<(gpio_anode*2))|(1<<(gpio_cathode*2)));//sets 14 and 16 bit to 1
-    GPIOA->MODER |=((1<<(gpio_anode*2+1))|(1<<(gpio_cathode*2+1)));
-
-}
-
