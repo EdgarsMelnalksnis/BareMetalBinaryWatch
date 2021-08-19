@@ -4,3 +4,5 @@
 *.o
 #ignoring .bin files
 *.bin
+#ignoring .elf files
+*.elf
