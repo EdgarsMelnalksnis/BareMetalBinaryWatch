@@ -1,7 +1,7 @@
 #include "led.h"
 #include "stm32l031xx.h"
 
-inline void blink_led(uint8_t gpio_anode,uint8_t gpio_cathode)
+void blink_led(uint8_t gpio_anode,uint8_t gpio_cathode)
 {
     GPIOA->MODER |= ((1<<(gpio_anode*2))|(1<<(gpio_cathode*2)));
     GPIOA->MODER &= ~((1<<(gpio_anode*2+1))|(1<<(gpio_cathode*2+1)));
@@ -11,7 +11,7 @@ inline void blink_led(uint8_t gpio_anode,uint8_t gpio_cathode)
     GPIOA->MODER |=((1<<(gpio_anode*2+1))|(1<<(gpio_cathode*2+1)));
 
 }
-inline void led_test(void)
+void led_test(void)
 {
     blink_led(LED_CTRL_0,LED_CTRL_1);
     blink_led(LED_CTRL_0,LED_CTRL_2);
