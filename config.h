@@ -22,4 +22,5 @@
 #define GPIO_12_MODER_POS_0 (24u)
 #define GPIO_12_MODER_POS_1 (25u)
 
+
 #endif

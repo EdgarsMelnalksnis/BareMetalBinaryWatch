@@ -3,9 +3,21 @@
 
 #include <stdint.h>
 
-inline void blink_led(uint8_t gpio_anode,uint8_t gpio_cathode);
-inline void led_test(void);
-inline void time_to_binary(uint8_t hours,uint8_t minute,uint8_t sec);
+#include "config.h"
+
+int var1;
+
+typedef struct
+{
+	uint8_t hours;
+	uint8_t min;
+	uint8_t sec;
+}Time;
+
+
+void blink_led(uint8_t gpio_anode,uint8_t gpio_cathode);
+void led_test(void);
+//void time_to_binary(Time);
 
 
 

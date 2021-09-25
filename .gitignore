@@ -1,8 +1,7 @@
-#ignoring .swp files
+#ignoring files with extension:
+&.swo
 *.swp
-#ignoring object files
 *.o
-#ignoring .bin files
 *.bin
-#ignoring .elf files
 *.elf
+
