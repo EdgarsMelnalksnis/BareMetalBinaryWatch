@@ -35,6 +35,53 @@ void led_test(void)
     blink_led(LED_CTRL_5,LED_CTRL_0);
     blink_led(LED_CTRL_4,LED_CTRL_0);
 }
-void time_to_binary(uint8_t hours,uint8_t minutes,uint8_t sec)
+void set_time(uint8_t hours,uint8_t min,uint8_t sec,Time *time_struct)
 {
+time_struct->hours=hours;
+time_struct->min=min;
+time_struct->sec=sec;
+}
+void time_to_binary(Time time)
+{
+    switch((time.sec)%10)
+    {
+        case(1):
+            blink_led(LED_CTRL_3,LED_CTRL_0);
+            break;
+        case(2):
+            blink_led(LED_CTRL_2,LED_CTRL_1);
+            break;
+        case(3):
+            blink_led(LED_CTRL_3,LED_CTRL_0);
+            blink_led(LED_CTRL_2,LED_CTRL_1);
+            break;
+        case(4):
+            blink_led(LED_CTRL_5,LED_CTRL_0);
+            break;
+        case(5):
+            blink_led(LED_CTRL_5,LED_CTRL_0);
+            blink_led(LED_CTRL_3,LED_CTRL_0);
+            break;
+        case(6):
+            blink_led(LED_CTRL_5,LED_CTRL_0);
+            blink_led(LED_CTRL_2,LED_CTRL_1);
+            break;
+        case(7):
+            blink_led(LED_CTRL_5,LED_CTRL_0);
+            blink_led(LED_CTRL_3,LED_CTRL_0);
+            blink_led(LED_CTRL_2,LED_CTRL_1);
+            break;
+        case(8):
+            blink_led(LED_CTRL_4,LED_CTRL_0);
+            break;
+        case(9):
+            blink_led(LED_CTRL_4,LED_CTRL_0);
+            blink_led(LED_CTRL_3,LED_CTRL_0);
+            break;
+        default:
+            break;
+    }	
+    time.sec;
+	time.min;
+	time.hours;
 }
