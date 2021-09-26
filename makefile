@@ -1,4 +1,4 @@
-TiARGET = main
+TARGET = main
 
 # Define the linker script location and chip architecture.
 LD_SCRIPT = STM32L031K6.ld
@@ -49,11 +49,14 @@ LFLAGS += -T$(LSCRIPT)
 VECT_TBL = ./vector_table.S
 AS_SRC   = ./core.S
 C_SRC    = ./main.c
+LED_SRC = ./led.c
+
 
 OBJS =  $(VECT_TBL:.S=.o)
 OBJS += $(AS_SRC:.S=.o)
 OBJS += $(C_SRC:.c=.o)
-OBJS += led.o
+OBJS += $(LED_SRC:.c=.o)
+#OBJS += ./led.c:.c=.o
 #OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(OUT_DIR)/%.o)
 
 .PHONY: all
@@ -76,3 +79,4 @@ $(TARGET).bin: $(TARGET).elf
 clean:
 	rm -f $(OBJS)
 	rm -f $(TARGET).elf
+	rm -f $(TARGET).bin
