@@ -13,7 +13,13 @@ typedef struct
 	uint8_t sec;
 }Time;
 
+typedef struct
+{
+    uint8_t anode;
+    uint8_t cathode;
+}Led;
 
+void blink_led_struct(Led);
 void blink_led(uint8_t gpio_anode,uint8_t gpio_cathode);
 void led_test(void);
 void set_time(uint8_t hours,uint8_t min,uint8_t sec,Time *time_struct);

@@ -11,6 +11,17 @@ void blink_led(uint8_t gpio_anode,uint8_t gpio_cathode)
     GPIOA->MODER |=((1<<(gpio_anode*2+1))|(1<<(gpio_cathode*2+1)));
 
 }
+
+void blink_led_struct(Led led)
+{
+    GPIOA->MODER |= ((1<<(led.anode*2))|(1<<(led.cathode*2)));
+    GPIOA->MODER &= ~((1<<(led.anode*2+1))|(1<<(led.cathode*2+1)));
+    GPIOA->ODR |= (1 << led.anode);
+    GPIOA->ODR &= ~(1 << led.cathode);
+    GPIOA->MODER |= ((1<<(led.anode*2))|(1<<(led.cathode*2)));
+    GPIOA->MODER |=((1<<(led.anode*2+1))|(1<<(led.cathode*2+1)));
+}
+
 void led_test(void)
 {
     blink_led(LED_CTRL_0,LED_CTRL_1);
