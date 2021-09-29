@@ -20,6 +20,7 @@ typedef struct
 }Led;
 
 void blink_led_struct(Led);
+void led_test_array(Led *);
 void blink_led(uint8_t gpio_anode,uint8_t gpio_cathode);
 void led_test(void);
 void set_time(uint8_t hours,uint8_t min,uint8_t sec,Time *time_struct);

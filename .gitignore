@@ -1,5 +1,5 @@
 #ignoring files with extension:
-&.swo
+*.swo
 *.swp
 *.o
 *.bin
