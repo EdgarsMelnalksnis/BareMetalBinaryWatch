@@ -35,19 +35,7 @@ int main(void)
 
     RCC->CSR |= 1 << RCC_CSR_RTCEN_Pos;
 
-    int i=0;
-    while(1)
-    {
-        dummy_del++;
-        if(dummy_del>1000)//5000 for 1sec
-        {
-            dummy_del=0;
-            i++;
-            if(i>21) i=0;
-        }
-        blink_led_struct(*(led_array+i));
-
-    }
+    led_test_array(led_array);
 
     while(1)
     {
