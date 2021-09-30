@@ -9,6 +9,8 @@
 #define LED_CTRL_4   (11u)
 #define LED_CTRL_5   (12u)
 
+#define BUTTON (2)
+
 #define GPIO_7_MODER_POS_0 (14u)
 #define GPIO_7_MODER_POS_1 (15u)
 #define GPIO_8_MODER_POS_0 (16u)
