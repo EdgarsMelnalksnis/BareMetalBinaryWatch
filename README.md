@@ -5,3 +5,12 @@ ToDo:
 2)Configure RTC to track time;
 3)Write better make file;
 4)Configure sleep mode and interrupts to improve current consumption;
+
+Debbuging with GDB: 
+1.in console write st-util;
+2.in second terminal, write gdb xxxx.elf (newer versions don`t need arm-none-eabi-gdb);
+3.in gdb write: target extended-remote :4242
+4.(gdb)load
+5.(gdb) continue (starts program execution)
+(gdb) info registers prints registers
+(gdb) p /t TIM3->CCMR1 prints register value in binary

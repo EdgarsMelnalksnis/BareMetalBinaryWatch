@@ -29,6 +29,7 @@ ASFLAGS += -fmessage-length=0
 CFLAGS += -mcpu=$(MCU_SPEC)
 CFLAGS += -mthumb
 CFLAGS += -Wall
+#CFLAGS += -gdwarf-4
 CFLAGS += -g3
 CFLAGS += -Iinclude
 # (Set error messages to appear on a single line.)
