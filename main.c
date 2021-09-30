@@ -5,7 +5,7 @@
 int main(void)
 {
     uint32_t dummy_del=0;
-
+    uint32_t bcd_time=0;
     Time time;
     time.sec=0;
     time.min=0;
@@ -43,16 +43,18 @@ int main(void)
     RCC->CSR |= (1<<17);//LSI as internal clock source
     RCC->CSR |= (1 << 18);//enable RTC
 
-    led_test_array(led_array);
+    //led_test_array(led_array);
 
     while(1)
     {
         time.sec=RTC -> TR;
+        bcd_time = RTC -> TR;
+        bcd_to_display(bcd_time,led_array);
         //dummy_del++;
-        if(time.sec & 1 )
-        {
-            blink_led_struct(led_array[0]);
-        }
+       // if(time.sec & 1 )
+       // {
+        //    blink_led_struct(led_array[0]);
+       // }
     }
 }
 
