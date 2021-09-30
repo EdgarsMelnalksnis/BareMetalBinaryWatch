@@ -1,6 +1,5 @@
 #include "led.h"
 #include "stm32l031xx.h"
-
 void blink_led(uint8_t gpio_anode,uint8_t gpio_cathode)
 {
     GPIOA->MODER |= ((1<<(gpio_anode*2))|(1<<(gpio_cathode*2)));
@@ -24,13 +23,11 @@ void blink_led_struct(Led led)
 
 void bcd_to_display(uint32_t bcd_data,Led *led_arr)
 {
-for(int i=0;i<22;i++)
-{
-    if(bcd_data & 1<<i)
+    for(int i=0;i<22;i++)
     {
-        blink_led_struct(*(led_arr+i));
+        if((bcd_data >> i) & 1)
+            blink_led_struct(*(led_arr+i));
     }
-}
 }
 
 void led_test(void)
@@ -60,10 +57,10 @@ void led_test(void)
 
 void led_test_array(Led *led_arr)
 {
-   uint8_t i=0u;
-   uint32_t dummy_delay=0u;
+    uint8_t i=0u;
+    uint32_t dummy_delay=0u;
     while(i<22u)
-       {
+    {
         dummy_delay++;
         if(dummy_delay>1000)//5000 for 1sec
         {
@@ -71,8 +68,8 @@ void led_test_array(Led *led_arr)
             i++;
         }
         blink_led_struct(*(led_arr+i));
-}
-     
+    }
+
 }
 
 void set_time(uint8_t hours,uint8_t min,uint8_t sec,Time *time_struct)
