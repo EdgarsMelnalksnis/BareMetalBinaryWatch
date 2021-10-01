@@ -21,9 +21,40 @@ void EXTI2_3_IRQ_handler(void)
         EXTI->PR |= ( 1 << BUTTON);
         button_flag=1;
     }
+}
+void initRcc(void)
+{
+    RCC->IOPENR   |= RCC_IOPENR_GPIOAEN;
+    RCC->CSR |= (1<<0);//LSI on
+    while(RCC->CSR & 1<<1)
+    {
+        //wait for LSI ready
+    }
+    RCC->APB1ENR |= (1<<28);//PWREN 
+    PWR->CR |= (1<<8);//DBP
+    RCC->CSR |= (1<<17);//LSI as internal clock source
+    RCC->CSR |= (1 << 18);//enable RTC
 
 }
 
+void initGPIO(void)
+{
+    GPIOA -> MODER &=~ (1<<5|1<<4);//GPIOA input mode
+    GPIOA -> PUPDR |= (1<<5);//GPIOA2 pulldown
+
+}
+
+void initGPIOInterrupt()
+{
+    RCC -> APB2ENR |= RCC_APB2ENR_SYSCFGEN;
+    SYSCFG -> EXTICR[(BUTTON/4)] &=~ ((0xF << (BUTTON % 4) * 4 ));
+    SYSCFG -> EXTICR[(BUTTON/4)] &=~ ((0x0 << (BUTTON % 4) * 4 ));        EXTI -> IMR |=(1 << BUTTON);
+    EXTI -> RTSR |= (1 << BUTTON);
+    EXTI -> FTSR &= ~(1 << BUTTON);
+    NVIC_SetPriority(EXTI2_3_IRQn,0x03);
+    NVIC_EnableIRQ(EXTI2_3_IRQn);
+
+}
 
 int main(void)
 {
@@ -51,27 +82,9 @@ int main(void)
         {LED_CTRL_0,LED_CTRL_2},
         {LED_CTRL_0,LED_CTRL_3}};
 
-    RCC->IOPENR   |= RCC_IOPENR_GPIOAEN;
-    RCC->CSR |= (1<<0);//LSI on
-    while(RCC->CSR & 1<<1)
-    {
-        //wait for LSI ready
-    }
-    RCC->APB1ENR |= (1<<28);//PWREN 
-    PWR->CR |= (1<<8);//DBP
-    RCC->CSR |= (1<<17);//LSI as internal clock source
-    RCC->CSR |= (1 << 18);//enable RTC
-
-    GPIOA -> MODER &=~ (1<<5|1<<4);//GPIOA input mode
-    GPIOA -> PUPDR |= (1<<5);//GPIOA2 pulldown
-
-    RCC -> APB2ENR |= RCC_APB2ENR_SYSCFGEN;
-    SYSCFG -> EXTICR[(BUTTON/4)] &=~ ((0xF << (BUTTON % 4) * 4 ));
-    SYSCFG -> EXTICR[(BUTTON/4)] &=~ ((0x0 << (BUTTON % 4) * 4 ));    EXTI -> IMR |=(1 << BUTTON);
-    EXTI -> RTSR |= (1 << BUTTON);
-    EXTI -> FTSR &= ~(1 << BUTTON);
-    NVIC_SetPriority(EXTI2_3_IRQn,0x03);
-    NVIC_EnableIRQ(EXTI2_3_IRQn);
+    initRcc();
+    initGPIO();
+    initGPIOInterrupt();
 
     while(1)
     {
@@ -81,7 +94,7 @@ int main(void)
         if(del_cntr>20000)
         {
             del_cntr=0;
-            enter_stop_mode();
+            //            enter_stop_mode();
         }
     }
 }
