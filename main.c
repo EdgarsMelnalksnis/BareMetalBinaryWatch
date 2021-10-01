@@ -4,6 +4,15 @@
 
 uint8_t button_flag;
 
+void enter_stop_mode()
+{
+    SysTick -> CTRL &= ~ (1<<1u);//stops systick
+    RCC -> APB1ENR |= (RCC_APB1ENR_PWREN);
+    SCB -> SCR |= SCB_SCR_SLEEPDEEP_Msk;
+    PWR -> CR &=~(PWR_CR_PDDS);
+
+    __WFI();
+}
 
 void EXTI2_3_IRQ_handler(void)
 {
@@ -68,15 +77,11 @@ int main(void)
     {
         bcd_time = RTC -> TR;
         bcd_to_display(bcd_time,led_array);
-        if(button_flag || del_cntr)
+        del_cntr++;
+        if(del_cntr>20000)
         {
-            button_flag=0;
-                led_test();
-            del_cntr++;
-            if(del_cntr>1000)
-            {
-                del_cntr=0;
-            }
+            del_cntr=0;
+            enter_stop_mode();
         }
     }
 }
