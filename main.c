@@ -60,27 +60,7 @@ int main(void)
 {
     uint32_t bcd_time=0;
     uint32_t del_cntr=0;
-    Led led_array[21]={{LED_CTRL_3,LED_CTRL_0},
-        {LED_CTRL_2,LED_CTRL_1},
-        {LED_CTRL_5,LED_CTRL_0},
-        {LED_CTRL_4,LED_CTRL_0},
-        {LED_CTRL_4,LED_CTRL_5},
-        {LED_CTRL_1,LED_CTRL_0},
-        {LED_CTRL_2,LED_CTRL_0},
-        {LED_CTRL_2,LED_CTRL_4},
-        {LED_CTRL_2,LED_CTRL_5},
-        {LED_CTRL_3,LED_CTRL_4},
-        {LED_CTRL_3,LED_CTRL_5},
-        {LED_CTRL_1,LED_CTRL_4},
-        {LED_CTRL_1,LED_CTRL_5},
-        {LED_CTRL_2,LED_CTRL_3},
-        {LED_CTRL_0,LED_CTRL_4},
-        {LED_CTRL_0,LED_CTRL_5},
-        {LED_CTRL_1,LED_CTRL_2},
-        {LED_CTRL_1,LED_CTRL_3},
-        {LED_CTRL_0,LED_CTRL_1},
-        {LED_CTRL_0,LED_CTRL_2},
-        {LED_CTRL_0,LED_CTRL_3}};
+    extern Led led_array[];
 
     initRcc();
     initGPIO();
@@ -94,7 +74,7 @@ int main(void)
         if(del_cntr>20000)
         {
             del_cntr=0;
-            //            enter_stop_mode();
+            //enter_stop_mode();
         }
     }
 }

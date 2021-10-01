@@ -1,5 +1,30 @@
 #include "led.h"
 #include "stm32l031xx.h"
+
+Led led_array[21]={{LED_CTRL_3,LED_CTRL_0},
+    {LED_CTRL_2,LED_CTRL_1},
+    {LED_CTRL_5,LED_CTRL_0},
+    {LED_CTRL_4,LED_CTRL_0},
+    {LED_CTRL_4,LED_CTRL_5},
+    {LED_CTRL_1,LED_CTRL_0},
+    {LED_CTRL_2,LED_CTRL_0},
+    {LED_CTRL_2,LED_CTRL_4},
+    {LED_CTRL_2,LED_CTRL_5},
+    {LED_CTRL_3,LED_CTRL_4},
+    {LED_CTRL_3,LED_CTRL_5},
+    {LED_CTRL_1,LED_CTRL_4},
+    {LED_CTRL_1,LED_CTRL_5},
+    {LED_CTRL_2,LED_CTRL_3},
+    {LED_CTRL_0,LED_CTRL_4},
+    {LED_CTRL_0,LED_CTRL_5},
+    {LED_CTRL_1,LED_CTRL_2},
+    {LED_CTRL_1,LED_CTRL_3},
+    {LED_CTRL_0,LED_CTRL_1},
+    {LED_CTRL_0,LED_CTRL_2},
+    {LED_CTRL_0,LED_CTRL_3}};
+
+
+
 void blink_led(uint8_t gpio_anode,uint8_t gpio_cathode)
 {
     GPIOA->MODER |= ((1<<(gpio_anode*2))|(1<<(gpio_cathode*2)));
