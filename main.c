@@ -58,6 +58,7 @@ void initGPIOInterrupt()
 
 int main(void)
 {
+    uint32_t timeOnExit=0;
     initRcc();
     initButton();
     initGPIOInterrupt();
@@ -65,9 +66,10 @@ int main(void)
     while(1)
     {
         bcd_to_display(RTC->TR);
-        if(((RTC->TR)>>4u) & 1)
+        if(RTC->TR - timeOnExit > TIME_TO_SHOW_DISPLAY)
         {
             enter_stop_mode();
+            timeOnExit=RTC->TR;
         }
     }
 }
