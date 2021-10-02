@@ -46,12 +46,12 @@ void blink_led_struct(Led led)
     GPIOA->MODER |=((1<<(led.anode*2+1))|(1<<(led.cathode*2+1)));
 }
 
-void bcd_to_display(uint32_t bcd_data,Led *led_arr)
+void bcd_to_display(uint32_t bcd_data)
 {
     for(int i=0;i<22;i++)
     {
         if((bcd_data >> i) & 1)
-            blink_led_struct(*(led_arr+i));
+            blink_led_struct(*(led_array+i));
     }
 }
 

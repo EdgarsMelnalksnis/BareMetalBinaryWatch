@@ -10,6 +10,7 @@
 #define LED_CTRL_5   (12u)
 
 #define BUTTON (2)
+#define TIME_TO_SHOW_DISPLAY 5  //time to show LEDs after wakeup from STOP mode
 
 #define GPIO_7_MODER_POS_0 (14u)
 #define GPIO_7_MODER_POS_1 (15u)

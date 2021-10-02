@@ -20,7 +20,7 @@ typedef struct
 }Led;
 
 void blink_led_struct(Led);
-void bcd_to_display(uint32_t,Led *);
+void bcd_to_display(uint32_t);
 void led_test_array(Led *);
 void blink_led(uint8_t gpio_anode,uint8_t gpio_cathode);
 void led_test(void);

@@ -37,7 +37,7 @@ void initRcc(void)
 
 }
 
-void initGPIO(void)
+void initButton(void)
 {
     GPIOA -> MODER &=~ (1<<5|1<<4);//GPIOA input mode
     GPIOA -> PUPDR |= (1<<5);//GPIOA2 pulldown
@@ -58,23 +58,16 @@ void initGPIOInterrupt()
 
 int main(void)
 {
-    uint32_t bcd_time=0;
-    uint32_t del_cntr=0;
-    extern Led led_array[];
-
     initRcc();
-    initGPIO();
+    initButton();
     initGPIOInterrupt();
 
     while(1)
     {
-        bcd_time = RTC -> TR;
-        bcd_to_display(bcd_time,led_array);
-        del_cntr++;
-        if(del_cntr>20000)
+        bcd_to_display(RTC->TR);
+        if(((RTC->TR)>>4u) & 1)
         {
-            del_cntr=0;
-            //enter_stop_mode();
+            enter_stop_mode();
         }
     }
 }
